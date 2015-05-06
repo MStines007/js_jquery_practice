@@ -154,7 +154,7 @@ $($myModal).appendTo('body').hide();
 $(window).scroll(function() {   
   if(($(window).scrollTop() + $(window).innerHeight() > $(document).innerHeight() * .9)
     && ($($('#my_modal').css('display') === 'none'))
-    && ($('#ctl00_pageHeader_LogoutLink').is(':visible')))  {
+    && ($('#ctl00_pageHeader_LogoutLink').is(':visible'))) {
       $($blackout).show();
       $($myModal).fadeIn().show();
       $(".itemRemove").hide();
@@ -173,7 +173,6 @@ $(window).scroll(function() {
           $(this).hide();
           $(".itemRemove").show();
       });
-      
     });
   }
 });
@@ -192,9 +191,8 @@ $( ".itemDtls" ).each( function( index, element ){
 });
 
 var itemsCombinedArray = [];
-  itemsCombinedArray.push(imagesArray);
-  itemsCombinedArray.push(itemDtlsArray);
-
+  itemsCombinedArray.push(imagesArray, itemDtlsArray);
+  
 for(i = 0; i < itemsCombinedArray[0].length; i++) {
   $('<div class="itemContainer"><img src='+ itemsCombinedArray[0][i] +'>\
       <div class="itemDetails"><h5>'+ itemsCombinedArray[1][i] +'</h5></div>\
