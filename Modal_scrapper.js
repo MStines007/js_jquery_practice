@@ -25,7 +25,7 @@ $("<style>")
     padding: 17px;\
     z-index: 10000;\
     height: 530px;\
-    width: 410px;\
+    width: 432px;\
     top: 50%;\
     left: 50%;\
     margin-left: -250px;\
@@ -41,7 +41,7 @@ $("<style>")
     padding: 17px;\
     z-index: 10001;\
     height: 438px;\
-    width: 410px;\
+    width: 432px;\
     top: 50%;\
     left: 50%;\
     margin-left: -250px;\
@@ -61,9 +61,9 @@ $("<style>")
     padding: 25px;\
     z-index: 10001;\
     height: 37px;\
-    width: 394px;\
+    width: 416px;\
     left: 50%;\
-    margin-left: -222px;\
+    margin-left: -233px;\
     bottom: 0;\
     background-color: white;\
   }")
@@ -100,7 +100,7 @@ $("<style>")
   margin-top: 10px;\
   padding-top: 8px;\
   padding-bottom: 10px;\
-  padding-left: 6px;\
+  padding-left: 14px;\
   }")
 .appendTo("head");
 
@@ -117,6 +117,7 @@ $("<style>")
   .html("\
   #exitBtn {\
     float: left;\
+    margin-left: 12px;\
   }")
 .appendTo("head");
 
@@ -129,6 +130,15 @@ $("<style>")
   }")
 .appendTo("head");
 
+$("<style>")
+  .prop("type", "text/css")
+  .html("\
+  #myLogo {\
+    margin-left: 10px;\
+  }")
+.appendTo("head");
+
+
 // modal/overlay structure //
 
 var $total = $('#subTotal').html();
@@ -137,7 +147,7 @@ var $logoImg = $('#logo').children().children().attr('src');
 var $blackout = $('<div id="blackout">');
 
 var $myModal = $('<div id="modal_wrapper">\
-                    <div id="my_modal"><img src='+ $logoImg +'>\
+                    <div id="my_modal"><img id="myLogo" src='+ $logoImg +'>\
                       <div id="totalPrice">subtotal: ' + $total + '</div>\
                     </div>\
                     <div id="modal_footer">\
