@@ -1,6 +1,80 @@
-// Matt Stines - Bounce Exchange Code Challenge //
+//////// Matt Stines JS.JQuery Challenge ////////////
 
-// Styling //
+
+/////////////////////////////  modal/overlay structure  ///////////////////////////////////
+
+var $total = $('#subTotal').html();
+var $itemQty = $('#navShoppingCart').children().text().split("(").pop();
+var $logoImg = $('#logo').children().children().attr('src');
+var $blackout = $('<div id="blackout">');
+
+var $myModal = $('<div id="modalWrapper">\
+                    <div id="myModal"><img id="myLogo" src='+ $logoImg +'>\
+                      <div id="totalPrice">subtotal: ' + $total + '</div>\
+                    </div>\
+                    <div id="modalFooter">\
+                      <button type="button" class ="cartCheckout btn red" id="cartBtn">Edit items in cart ('+ $itemQty +'</button>\
+                      <button type="button" class="cartCheckout btn red" id="exitBtn">Close Window</button>\
+                    </div>\
+                  </div>');
+
+$($blackout).appendTo('body').hide();
+$($myModal).appendTo('body').hide(); 
+
+
+/////////////////////////////  modal/overlay logic  ////////////////////////////////////////
+
+$(window).scroll(function() {   
+  if(($(window).scrollTop() + $(window).innerHeight() > $(document).innerHeight() * .9)
+    && ($($('#my_modal').css('display') === 'none'))
+    && ($('#ctl00_pageHeader_LogoutLink').is(':visible'))) {
+      $($blackout).fadeIn('fast', function(){
+        $($myModal).fadeIn('fast').show();
+        $(".itemRemove").hide();
+      });
+      
+      $("#cartBtn").click(function(){
+          location.href='https://marmot.com/checkout/cart';
+      });
+      $("#exitBtn").click(function(){
+          $('myModal').fadeOut(function(){
+          $(this).hide();
+      });
+      $('#modalWrapper').fadeOut(function(){
+          $(this).hide();
+      });    
+      $($blackout).fadeOut(function(){
+          $(this).hide();
+          $(".itemRemove").show();
+      });
+    });
+  }
+});
+
+
+////////////  items image and details iterator. Adds images and details dynamically  //////////////////
+
+var imagesArray = [];
+$( ".itemImg" ).each( function( index, element ){
+    imagesArray.push($( this ).children().attr('src') );
+});
+
+var itemDtlsArray = [];
+$( ".itemDtls" ).each( function( index, element ){
+    itemDtlsArray.push($( this ).children().html());
+});
+
+var itemsCombinedArray = [];
+  itemsCombinedArray.push(imagesArray, itemDtlsArray);
+  
+for(i = 0; i < itemsCombinedArray[0].length; i++) {
+  $('<div class="item_container"><img src='+ itemsCombinedArray[0][i] +'>\
+      <div class="item_details"><h5>'+ itemsCombinedArray[1][i] +'</h5></div>\
+    </div><br>').insertAfter('#totalPrice');
+}
+
+
+////////////////////////////////////  Styling  ///////////////////////////////////////////////////////
 
 $("<style>")
   .prop("type", "text/css")
@@ -20,7 +94,7 @@ $("<style>")
 $("<style>")
   .prop("type", "text/css")
   .html("\
-  #modal_wrapper {\
+  #modalWrapper {\
     position: fixed;\
     padding: 17px;\
     z-index: 10000;\
@@ -36,7 +110,7 @@ $("<style>")
 $("<style>")
   .prop("type", "text/css")
   .html("\
-  #my_modal {\
+  #myModal {\
     position: fixed;\
     padding: 17px;\
     z-index: 10001;\
@@ -46,8 +120,8 @@ $("<style>")
     left: 50%;\
     margin-left: -250px;\
     margin-top: -300px;\
-    border-top: 7px solid #c00;\
-    background-color: #fff;\
+    border-top: 5px solid #c00;\
+    background-color: white;\
     -webkit-box-shadow: 0 8px 13px -2px #666;\
     overflow: auto;\
   }")
@@ -56,7 +130,7 @@ $("<style>")
 $("<style>")
   .prop("type", "text/css")
   .html("\
-  #modal_footer {\
+  #modalFooter {\
     position: absolute;\
     padding: 25px;\
     z-index: 10001;\
@@ -72,7 +146,7 @@ $("<style>")
 $("<style>")
   .prop("type", "text/css")
   .html("\
-  .itemContainer {\
+  .item_container {\
     height: 144px;\
   }")
 .appendTo("head");
@@ -80,7 +154,7 @@ $("<style>")
 $("<style>")
   .prop("type", "text/css")
   .html("\
-  .itemDetails {\
+  .item_details {\
     float: none;\
     display: inline-block;\
     transform: translateY(-50%);\
@@ -117,7 +191,7 @@ $("<style>")
   .html("\
   #exitBtn {\
     float: left;\
-    margin-left: 12px;\
+    margin-left: 24px;\
   }")
 .appendTo("head");
 
@@ -137,75 +211,3 @@ $("<style>")
     margin-left: 10px;\
   }")
 .appendTo("head");
-
-
-// modal/overlay structure //
-
-var $total = $('#subTotal').html();
-var $itemQty = $('#navShoppingCart').children().text().split("(").pop();
-var $logoImg = $('#logo').children().children().attr('src');
-var $blackout = $('<div id="blackout">');
-
-var $myModal = $('<div id="modal_wrapper">\
-                    <div id="my_modal"><img id="myLogo" src='+ $logoImg +'>\
-                      <div id="totalPrice">subtotal: ' + $total + '</div>\
-                    </div>\
-                    <div id="modal_footer">\
-                      <button type="button" class ="cartCheckout btn red" id="cartBtn">Edit items in cart ('+ $itemQty +'</button>\
-                      <button type="button" class="cartCheckout btn red" id="exitBtn">Close Window</button>\
-                    </div>\
-                  </div>');
-
-$($blackout).appendTo('body').hide();
-$($myModal).appendTo('body').hide(); 
-
-// modal/overlay logic //
-
-$(window).scroll(function() {   
-  if(($(window).scrollTop() + $(window).innerHeight() > $(document).innerHeight() * .9)
-    && ($($('#my_modal').css('display') === 'none'))
-    && ($('#ctl00_pageHeader_LogoutLink').is(':visible'))) {
-      $($blackout).fadeIn('fast', function(){
-        $($myModal).fadeIn('fast').show();
-        $(".itemRemove").hide();
-      });
-      
-      $("#cartBtn").click(function(){
-          location.href='https://marmot.com/checkout/cart';
-      });
-      $("#exitBtn").click(function(){
-          $('my_modal').fadeOut(function(){
-          $(this).hide();
-      });
-      $('#modal_wrapper').fadeOut(function(){
-          $(this).hide();
-      });    
-      $($blackout).fadeOut(function(){
-          $(this).hide();
-          $(".itemRemove").show();
-      });
-    });
-  }
-});
-
-///////////////////////////////////////////////////////////////////////////////////
-// items image and details iterator. Adds images and details dynamically //
-
-var imagesArray = [];
-$( ".itemImg" ).each( function( index, element ){
-    imagesArray.push($( this ).children().attr('src') );
-});
-
-var itemDtlsArray = [];
-$( ".itemDtls" ).each( function( index, element ){
-    itemDtlsArray.push($( this ).children().html());
-});
-
-var itemsCombinedArray = [];
-  itemsCombinedArray.push(imagesArray, itemDtlsArray);
-  
-for(i = 0; i < itemsCombinedArray[0].length; i++) {
-  $('<div class="itemContainer"><img src='+ itemsCombinedArray[0][i] +'>\
-      <div class="itemDetails"><h5>'+ itemsCombinedArray[1][i] +'</h5></div>\
-    </div><br>').insertAfter('#totalPrice');
-}
