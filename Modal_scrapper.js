@@ -155,9 +155,10 @@ $(window).scroll(function() {
   if(($(window).scrollTop() + $(window).innerHeight() > $(document).innerHeight() * .9)
     && ($($('#my_modal').css('display') === 'none'))
     && ($('#ctl00_pageHeader_LogoutLink').is(':visible'))) {
-      $($blackout).show();
-      $($myModal).fadeIn().show();
-      $(".itemRemove").hide();
+      $($blackout).fadeIn(function(){
+        $($myModal).fadeIn().show();
+        $(".itemRemove").hide();
+      });
       
       $("#cartBtn").click(function(){
           location.href='https://marmot.com/checkout/cart';
