@@ -155,8 +155,8 @@ $(window).scroll(function() {
   if(($(window).scrollTop() + $(window).innerHeight() > $(document).innerHeight() * .9)
     && ($($('#my_modal').css('display') === 'none'))
     && ($('#ctl00_pageHeader_LogoutLink').is(':visible'))) {
-      $($blackout).fadeIn(function(){
-        $($myModal).fadeIn().show();
+      $($blackout).fadeIn('fast', function(){
+        $($myModal).fadeIn('fast').show();
         $(".itemRemove").hide();
       });
       
