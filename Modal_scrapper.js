@@ -1,7 +1,7 @@
 //////// Matt Stines JS.JQuery Challenge ////////////
 
 
-/////////////////////////////  modal/overlay structure  ///////////////////////////////////
+/////////////////////////////  modal/overlay structure - initialize  ///////////////////////////////////
 
 var $total = $('#subTotal').html();
 var $itemQty = $('#navShoppingCart').children().text().split("(").pop();
@@ -13,7 +13,7 @@ var $myModal = $('<div id="modalWrapper">\
                       <div id="totalPrice">subtotal: ' + $total + '</div>\
                     </div>\
                     <div id="modalFooter">\
-                      <button type="button" class ="cartCheckout btn red" id="cartBtn">Edit items in cart ('+ $itemQty +'</button>\
+                      <button type="button" class="cartCheckout btn red" id="cartBtn">Edit items in cart ('+ $itemQty +'</button>\
                       <button type="button" class="cartCheckout btn red" id="exitBtn">Close Window</button>\
                     </div>\
                   </div>');
@@ -32,7 +32,6 @@ $(window).scroll(function() {
         $($myModal).fadeIn('fast').show();
         $(".itemRemove").hide();
       });
-      
       $("#cartBtn").click(function(){
           location.href='https://marmot.com/checkout/cart';
       });
@@ -79,135 +78,75 @@ for(i = 0; i < itemsCombinedArray[0].length; i++) {
 $("<style>")
   .prop("type", "text/css")
   .html("\
-  #blackout {\
-    position: fixed;\
-    z-index: 10000;\
-    height: 100%;\
-    width: 100%;\
-    top: 0;\
-    left: 0;\
-    background-color: black;\
-    opacity: .75;\
-  }")
-.appendTo("head");
-
-$("<style>")
-  .prop("type", "text/css")
-  .html("\
-  #modalWrapper {\
-    position: fixed;\
-    padding: 17px;\
-    z-index: 10000;\
-    height: 530px;\
-    width: 432px;\
-    top: 50%;\
-    left: 50%;\
-    margin-left: -250px;\
-    margin-top: -300px;\
-  }")
-.appendTo("head");
-
-$("<style>")
-  .prop("type", "text/css")
-  .html("\
-  #myModal {\
-    position: fixed;\
-    padding: 17px;\
-    z-index: 10001;\
-    height: 438px;\
-    width: 432px;\
-    top: 50%;\
-    left: 50%;\
-    margin-left: -250px;\
-    margin-top: -300px;\
-    border-top: 5px solid #c00;\
-    background-color: white;\
-    -webkit-box-shadow: 0 8px 13px -2px #666;\
-    overflow: auto;\
-  }")
-.appendTo("head");
-
-$("<style>")
-  .prop("type", "text/css")
-  .html("\
-  #modalFooter {\
-    position: absolute;\
-    padding: 25px;\
-    z-index: 10001;\
-    height: 37px;\
-    width: 416px;\
-    left: 50%;\
-    margin-left: -233px;\
-    bottom: 0;\
-    background-color: white;\
-  }")
-.appendTo("head");
-
-$("<style>")
-  .prop("type", "text/css")
-  .html("\
-  .item_container {\
-    height: 144px;\
-  }")
-.appendTo("head");
-
-$("<style>")
-  .prop("type", "text/css")
-  .html("\
-  .item_details {\
-    float: none;\
-    display: inline-block;\
-    transform: translateY(-50%);\
-    vertical-align: middle;\
-    border-bottom: 1px solid #CCC;\
-    margin-left: 20px;\
-  }")
-.appendTo("head");
-
-$("<style>")
-  .prop("type", "text/css")
-  .html("\
-  #totalPrice {\
-  color: #B3B3B3;\
-  font-size: 16px;\
-  border-top: 1px solid #CCC;\
-  margin-top: 10px;\
-  padding-top: 8px;\
-  padding-bottom: 10px;\
-  padding-left: 14px;\
-  }")
-.appendTo("head");
-
-$("<style>")
-  .prop("type", "text/css")
-  .html("\
-  .btn:focus {\
-    outline: none;\
-  }")
-.appendTo("head");
-
-$("<style>")
-  .prop("type", "text/css")
-  .html("\
-  #exitBtn {\
-    float: left;\
-    margin-left: 24px;\
-  }")
-.appendTo("head");
-
-$("<style>")
-  .prop("type", "text/css")
-  .html("\
-  #cartBtn {\
-    margin-left: 14px;\
-    float: right;\
-  }")
-.appendTo("head");
-
-$("<style>")
-  .prop("type", "text/css")
-  .html("\
-  #myLogo {\
-    margin-left: 10px;\
+    #blackout {\
+        position: fixed;\
+        z-index: 10000;\
+        height: 100%;\
+        width: 100%;\
+        top: 0;\
+        left: 0;\
+        background-color: black;\
+        opacity: .75;\
+  } #modalWrapper {\
+        position: fixed;\
+        padding: 17px;\
+        z-index: 10000;\
+        height: 530px;\
+        width: 432px;\
+        top: 50%;\
+        left: 50%;\
+        margin-left: -250px;\
+        margin-top: -300px;\
+  } #myModal {\
+        position: fixed;\
+        padding: 17px;\
+        z-index: 10001;\
+        height: 438px;\
+        width: 432px;\
+        top: 50%;\
+        left: 50%;\
+        margin-left: -250px;\
+        margin-top: -300px;\
+        border-top: 5px solid #c00;\
+        background-color: white;\
+        -webkit-box-shadow: 0 8px 13px -2px #666;\
+        overflow: auto;\
+  } #modalFooter {\
+        position: absolute;\
+        padding: 25px;\
+        z-index: 10001;\
+        height: 37px;\
+        width: 416px;\
+        left: 50%;\
+        margin-left: -233px;\
+        bottom: 0;\
+        background-color: white;\
+  } .item_container {\
+        height: 144px;\
+  } .item_details {\
+        float: none;\
+        display: inline-block;\
+        transform: translateY(-50%);\
+        vertical-align: middle;\
+        border-bottom: 1px solid #CCC;\
+        margin-left: 20px;\
+  } #totalPrice {\
+        color: #B3B3B3;\
+        font-size: 16px;\
+        border-top: 1px solid #CCC;\
+        margin-top: 10px;\
+        padding-top: 8px;\
+        padding-bottom: 10px;\
+        padding-left: 14px;\
+  }  .btn:focus {\
+        outline: none;\
+  } #exitBtn {\
+        float: left;\
+        margin-left: 24px;\
+  } #cartBtn {\
+        margin-left: 14px;\
+        float: right;\
+  } #myLogo {\
+        margin-left: 10px;\
   }")
 .appendTo("head");
