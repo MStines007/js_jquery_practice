@@ -22,7 +22,7 @@ $($blackout).appendTo('body').hide();
 $($myModal).appendTo('body').hide(); 
 
 
-/////////////////////////////  modal/overlay logic  ////////////////////////////////////////
+/////////////////////////////  modal/overlay logic  /////////////////////////////////////////////
 
 $(window).scroll(function() {   
   if(($(window).scrollTop() + $(window).innerHeight() > $(document).innerHeight() * .9)
@@ -51,7 +51,7 @@ $(window).scroll(function() {
 });
 
 
-////////////  items image and details iterator. Adds images and details dynamically  //////////////////
+/////////////////////  items image and details dynamic iterator  ////////////////////////
 
 var imagesArray = [];
 $( ".itemImg" ).each( function( index, element ){
@@ -73,7 +73,7 @@ for(i = 0; i < itemsCombinedArray[0].length; i++) {
 }
 
 
-////////////////////////////////////  Styling  ///////////////////////////////////////////////////////
+///////////////////////////////  Styling  //////////////////////////////////////////////
 
 $("<style>")
   .prop("type", "text/css")
