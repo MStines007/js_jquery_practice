@@ -3,9 +3,11 @@
 
 /////////////////////////////  modal/overlay structure - initialize  ///////////////////////////////////
 
+
 var $total = $('#subTotal').html();
 var $itemQty = $('#navShoppingCart').children().text().split("(").pop();
 var $logoImg = $('#logo').children().children().attr('src');
+var $cartUrl = $('#hdrCartCheckout').attr('href');
 var $blackout = $('<div id="blackout">');
 
 var $myModal = $('<div id="modalWrapper">\
@@ -24,6 +26,7 @@ $($myModal).appendTo('body').hide();
 
 /////////////////////////////  modal/overlay logic  /////////////////////////////////////////////
 
+
 $(window).scroll(function() {   
   if(($(window).scrollTop() + $(window).innerHeight() > $(document).innerHeight() * .9)
     && ($($('#my_modal').css('display') === 'none'))
@@ -33,7 +36,7 @@ $(window).scroll(function() {
         $(".itemRemove").hide();
       });
       $("#cartBtn").click(function(){
-          location.href='https://marmot.com/checkout/cart';
+          location.href= $cartUrl;
       });
       $("#exitBtn").click(function(){
           $('myModal').fadeOut(function(){
@@ -53,6 +56,7 @@ $(window).scroll(function() {
 
 /////////////////////  items image and details dynamic iterator  ////////////////////////
 
+
 var imagesArray = [];
 $( ".itemImg" ).each( function( index, element ){
     imagesArray.push($( this ).children().attr('src') );
@@ -69,11 +73,12 @@ var itemsCombinedArray = [];
 for(i = 0; i < itemsCombinedArray[0].length; i++) {
   $('<div class="item_container"><img src='+ itemsCombinedArray[0][i] +'>\
       <div class="item_details"><h5>'+ itemsCombinedArray[1][i] +'</h5></div>\
-    </div><br>').insertAfter('#totalPrice');
+     </div><br>').insertAfter('#totalPrice');
 }
 
 
 ///////////////////////////////  Styling  //////////////////////////////////////////////
+
 
 $("<style>")
   .prop("type", "text/css")
