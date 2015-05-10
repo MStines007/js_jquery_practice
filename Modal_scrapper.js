@@ -91,7 +91,7 @@ $("<style>")
         top: 0;\
         left: 0;\
         background-color: black;\
-        opacity: .75;\
+        opacity: .8;\
   } #modalWrapper {\
         position: fixed;\
         padding: 17px;\
